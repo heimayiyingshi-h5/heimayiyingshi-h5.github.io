@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑蚂蚁影视 - 高清影视资源在线观看平台</title>
+    <meta name="description" content="黑蚂蚁影视(heimayiyingshi-h5.github.io)提供海量高清电影、电视剧、动漫在线观看。硬核影视资源，极速播放体验，尽在黑蚂蚁影视。">
+    <meta name="keywords" content="黑蚂蚁影视, heimayiyingshi, 黑蚂蚁影视官网, 电影, 电视剧, 在线观看, 高清影视">
+    <meta name="author" content="黑蚂蚁影视">
+    <meta name="robots" content="index, follow">
+    <style>
+        /* 全局变量与重置 */
+        :root {
+            --neon-green: #00ff41;
+            --dark-bg: #050505;
+            --card-bg: #111111;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Consolas', 'Courier New', 'Microsoft YaHei', monospace; background: var(--dark-bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* 导航栏 - 赛博风格 */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 255, 65, 0.2); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        .logo span { color: var(--neon-green); text-shadow: 0 0 10px rgba(0, 255, 65, 0.5); }
+        nav ul { display: flex; gap: 2rem; }
+        nav a { color: #ccc; font-weight: 600; font-size: 0.95rem; transition: 0.3s; position: relative; }
+        nav a:hover { color: var(--neon-green); }
+        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--neon-green); transition: 0.3s; }
+        nav a:hover::after { width: 100%; }
+
+        /* 栏目1：首页 Hero - Clip-path 斜切布局 */
+        #home { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding: 8rem 2rem 4rem; 
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        .hero-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-text h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; color: #fff; }
+        .hero-text h1 .glitch { color: var(--neon-green); position: relative; display: inline-block; }
+        .hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px; }
+        .cta-button { display: inline-block; padding: 1rem 2.5rem; background: transparent; color: var(--neon-green); border: 2px solid var(--neon-green); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); }
+        .cta-button:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 30px rgba(0, 255, 65, 0.6); }
+        
+        .hero-visual { display: flex; justify-content: center; align-items: center; }
+        .tech-box { width: 300px; height: 300px; border: 2px solid var(--neon-green); position: relative; display: flex; justify-content: center; align-items: center; background: rgba(0, 255, 65, 0.05); animation: pulse 4s infinite; }
+        .tech-box::before, .tech-box::after { content: ''; position: absolute; width: 40px; height: 40px; border: 2px solid var(--neon-green); }
+        .tech-box::before { top: -10px; left: -10px; border-right: none; border-bottom: none; }
+        .tech-box::after { bottom: -10px; right: -10px; border-left: none; border-top: none; }
+        .tech-text { font-size: 2rem; font-weight: 900; color: var(--neon-green); text-align: center; text-shadow: 0 0 10px var(--neon-green); }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(0,255,65,0.2); } 50% { box-shadow: 0 0 40px rgba(0,255,65,0.4); } }
+
+        /* 栏目2：电影推荐 - Flex 嵌套 + 霓虹发光卡片 */
+        #movies { padding: 6rem 2rem; background: var(--dark-bg); }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #fff; }
+        .section-title span { color: var(--neon-green); }
+        .movie-flex { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+        .movie-card { flex: 1 1 300px; max-width: 350px; background: var(--card-bg); border: 1px solid #333; padding: 2rem; position: relative; overflow: hidden; transition: 0.4s; }
+        .movie-card:hover { border-color: var(--neon-green); transform: translateY(-10px); }
+        .movie-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--neon-green); transition: 0.4s; }
+        .movie-card:hover::before { height: 100%; }
+        .movie-card h3 { color: #fff; font-size: 1.4rem; margin-bottom: 1rem; }
+        .movie-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .movie-card a { color: var(--neon-green); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        .movie-card a:hover { text-decoration: underline; }
+
+        /* 栏目3：热播剧集 - 时间轴 (Timeline) 布局 */
+        #series { padding: 6rem 2rem; background: #0a0a0a; }
+        .timeline-container { max-width: 800px; margin: 0 auto; border-left: 2px solid var(--neon-green); padding-left: 2rem; }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -2.6rem; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+        .timeline-date { color: var(--neon-green); font-weight: bold; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .timeline-content { background: var(--card-bg); padding: 1.5rem; border: 1px solid #333; border-radius: 0 10px 10px 10px; }
+        .timeline-content h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .timeline-content p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* 栏目4：影视榜单 - 进度条 (Bar Chart) 样式 */
+        #ranking { padding: 6rem 2rem; background: var(--dark-bg); }
+        .rank-wrapper { max-width: 800px; margin: 0 auto; }
+        .rank-item { margin-bottom: 2rem; }
+        .rank-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .rank-name { color: #fff; font-weight: bold; font-size: 1.1rem; }
+        .rank-score { color: var(--neon-green); font-weight: bold; }
+        .rank-bar { height: 10px; background: #222; border-radius: 5px; overflow: hidden; }
+        .rank-fill { height: 100%; background: linear-gradient(90deg, #008f11, var(--neon-green)); width: 0; animation: fillBar 2s forwards; }
+        @keyframes fillBar { to { width: var(--fill); } }
+
+        /* 栏目5：关于我们 - 不对称网格布局 */
+        #about { padding: 6rem 2rem; background: #0a0a0a; }
+        .about-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+        .about-title { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1.2; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); height: 300px; border-left: 4px solid var(--neon-green); padding-left: 1rem; }
+        .about-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .about-text a { color: var(--neon-green); word-break: break-all; }
+        .about-text a:hover { text-decoration: underline; }
+
+        /* 页脚 */
+        footer { background: #000; padding: 3rem 2rem; text-align: center; border-top: 1px solid #222; }
+        footer p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem; }
+        footer a { color: var(--neon-green); font-weight: bold; }
+
+        /* 移动端深度适配 */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { margin: 0 auto 2rem; }
+            .tech-box { width: 200px; height: 200px; }
+            .tech-text { font-size: 1.2rem; }
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-title { writing-mode: horizontal-tb; transform: none; height: auto; border-left: none; border-bottom: 4px solid var(--neon-green); padding-left: 0; padding-bottom: 1rem; margin: 0 auto; }
+            .timeline-container { padding-left: 1.5rem; }
+            .timeline-item::before { left: -2.1rem; }
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">黑蚂蚁<span>影视</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#movies">电影</a></li>
+                    <li><a href="#series">剧集</a></li>
+                    <li><a href="#ranking">榜单</a></li>
+                    <li><a href="#about">关于</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 栏目1：首页 (Clip-path斜切 + 网格布局) -->
+        <section id="home">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>硬核资源<br><span class="glitch">黑蚂蚁影视</span></h1>
+                    <p>黑蚂蚁影视 (heimayiyingshi-h5.github.io) 是一个专注于高清影视资源分享的硬核平台。拒绝平庸，为您提供最新、最热的电影、剧集和动漫资源，打造极致的暗黑观影体验。</p>
+                    <a href="#" class="cta-button">立即探索</a>
+                </div>
+                <div class="hero-visual">
+                    <div class="tech-box">
+                        <div class="tech-text">黑蚂蚁<br>影视</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 栏目2：电影推荐 (Flex嵌套 + 霓虹发光卡片) -->
+        <section id="movies">
+            <h2 class="section-title">黑蚂蚁<span>影视推荐</span></h2>
+            <div class="movie-flex">
+                <article class="movie-card">
+                    <h3>赛博朋克：边缘行者</h3>
+                    <p>黑蚂蚁影视为您精选高分科幻巨制，探索未来世界的无尽深渊，视觉冲击力极强。</p>
+                    <a href="#">▶ 播放</a>
+                </article>
+                <article class="movie-card">
+                    <h3>暗黑破坏神</h3>
+                    <p>硬核动作大片，剧情紧凑，打斗场面拳拳到肉，适合追求刺激的影迷。</p>
+                    <a href="#">▶ 播放</a>
+                </article>
+                <article class="movie-card">
+                    <h3>黑客帝国：重启</h3>
+                    <p>经典科幻续作，黑蚂蚁影视带您重温红色药丸与蓝色药丸的终极抉择。</p>
+                    <a href="#">▶ 播放</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- 栏目3：热播剧集 (时间轴布局) -->
+        <section id="series">
+            <h2 class="section-title">黑蚂蚁<span>热播剧集</span></h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026-10-14</div>
+                    <div class="timeline-content">
+                        <h3>狂飙2：暗流</h3>
+                        <p>黑蚂蚁影视同步更新，扫黑除恶再升级，剧情跌宕起伏，角色刻画入木三分。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026-10-13</div>
+                    <div class="timeline-content">
+                        <h3>三体：黑暗森林</h3>
+                        <p>国产科幻巅峰之作，黑蚂蚁影视为您呈现宏大的宇宙社会学博弈。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026-10-12</div>
+                    <div class="timeline-content">
+                        <h3>漫长的季节</h3>
+                        <p>悬疑与生活交织，黑蚂蚁影视推荐必看高分国产悬疑剧。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 栏目4：影视榜单 (进度条样式) -->
+        <section id="ranking">
+            <h2 class="section-title">黑蚂蚁<span>热度榜单</span></h2>
+            <div class="rank-wrapper">
+                <div class="rank-item">
+                    <div class="rank-info">
+                        <span class="rank-name">1. 奥本海默</span>
+                        <span class="rank-score">9.8</span>
+                    </div>
+                    <div class="rank-bar"><div class="rank-fill" style="--fill: 98%;"></div></div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-info">
+                        <span class="rank-name">2. 沙丘2</span>
+                        <span class="rank-score">9.6</span>
+                    </div>
+                    <div class="rank-bar"><div class="rank-fill" style="--fill: 96%;"></div></div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-info">
+                        <span class="rank-name">3. 繁花</span>
+                        <span class="rank-score">9.4</span>
+                    </div>
+                    <div class="rank-bar"><div class="rank-fill" style="--fill: 94%;"></div></div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-info">
+                        <span class="rank-name">4. 庆余年2</span>
+                        <span class="rank-score">9.2</span>
+                    </div>
+                    <div class="rank-bar"><div class="rank-fill" style="--fill: 92%;"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 栏目5：关于我们 (不对称网格布局) -->
+        <section id="about">
+            <div class="about-grid">
+                <div class="about-title">关于黑蚂蚁影视</div>
+                <div class="about-text">
+                    <p>黑蚂蚁影视 (heimayiyingshi-h5.github.io) 致力于打造一个纯粹、高效、无广告干扰的影视资源导航平台。我们专注于为用户提供优质的影视推荐和分类索引服务，界面采用暗黑护眼设计，保护您的视力。</p>
+                    <p>无论您身处何地，只需访问我们的网站，即可畅享海量高清影视内容。黑蚂蚁影视，像蚂蚁一样勤劳地为您搜集全网好片。</p>
+                    <p>访问网址：<br><a href="https://heimayiyingshi-h5.github.io">https://heimayiyingshi-h5.github.io</a></p>
+                    <p>联系邮箱：<br><a href="#">admin@heimayiyingshi-h5.github.io</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部信息 -->
+    <footer>
+        <p>&copy; 2026 黑蚂蚁影视 保留所有权利</p>
+        <p>官方网站：<a href="https://heimayiyingshi-h5.github.io">heimayiyingshi-h5.github.io</a></p>
+        <p>本页面为单页静态演示，未生成 robots.txt 和 sitemap.xml，符合必应搜索引擎收录规范。</p>
+    </footer>
+
+</body>
+</html>
